@@ -1,32 +1,38 @@
 {
-  "name": "eat-da-burger",
+  "name": "my-burger-sequel",
   "version": "1.0.0",
-  "description": "Buger eating application with Node.js, Express, Handlebars, and MySQL.",
+  "description": "Buger eating application with Node.js, Express, Handlebars, MySQL, and Sequelize.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/angrbrd/eat-da-burger.git"
+    "url": "git+https://github.com/angrbrd/my-burger-sequel.git"
   },
   "keywords": [
     "burgers",
     "eating",
-    "burgerfi"
+    "burgerfi",
+    "sequelize-da-burger"
   ],
   "author": "Anna D Derbakova",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/angrbrd/eat-da-burger/issues"
+    "url": "https://github.com/angrbrd/my-burger-sequel/issues"
   },
-  "homepage": "https://github.com/angrbrd/eat-da-burger#readme",
+  "homepage": "https://github.com/angrbrd/my-burger-sequelr#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "express-handlebars": "^3.0.0",
     "method-override": "^2.3.7",
     "mysql": "^2.13.0",
+    "path": "^0.12.7",
     "sequelize": "^3.30.2"
+  },
+  "engines": {
+    "node": "6.9.5",
+    "npm": "3.10.10"
   }
 }
