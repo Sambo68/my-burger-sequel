@@ -128,6 +128,7 @@
 
 .eatBurgerButton {
 	float: right;
+	
  	border-radius: 25px;
  	margin-top: 0px;
  	margin-right: 15px;
@@ -142,17 +143,17 @@ input::-webkit-input-placeholder {
 }
  
 input:-moz-placeholder { /* Firefox 18- */
-	color: red !important;  
+	color: grey !important;  
 	opacity: 0.35;
 }
  
 input::-moz-placeholder {  /* Firefox 19+ */
-	color: red !important;  
+	color: grey !important;  
 	opacity: 0.35;
 }
  
 input:-ms-input-placeholder {  
-	color: red !important;  
+	color: grey !important;  
 	opacity: 0.35;
 }
 
