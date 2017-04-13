@@ -7,8 +7,12 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     log.debug("___ENTER GET /___");
 
-    db.Burger.findAll()
+    db.Burger.findAll({
+      include: [ db.Customer ]
+    })
     .then(function(data) {
+      log.debug("data = " + JSON.stringify(data));
+      
       var hbsObject = {
         burgers: data
       };
