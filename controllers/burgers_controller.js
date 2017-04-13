@@ -8,11 +8,12 @@ module.exports = function(app) {
     log.debug("___ENTER GET /___");
 
     db.Burger.findAll({
-      include: [ db.Customer ]
+      include: [ db.Customer ],
+      order: "name ASC"
     })
     .then(function(data) {
       log.debug("data = " + JSON.stringify(data));
-      
+
       var hbsObject = {
         burgers: data
       };
