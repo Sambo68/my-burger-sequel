@@ -9,14 +9,12 @@
           {{#unless this.devoured}}
             <div class="row">
               <div class="burgerName">
-                <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
-                  <button type="submit" class='burgerAvailable'> {{this.name}}</button>
-                </form>
+                  <div class='burgerAvailable'>{{this.name}}</div>
               </div>
 
               <div class="customerEats">
-                <form action="/burgers" method="POST">
-                  <input type="text" id="customerName" name="customer-name" placeholder="Your Name">
+                <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
+                  <input type="text" id="customerName" name="customerName" placeholder="Your Name">
                   <button type="submit" class="eatBurgerButton fa fa-cutlery fa-2x" aria-hidden="true"></button>
                 </form>
               </div>

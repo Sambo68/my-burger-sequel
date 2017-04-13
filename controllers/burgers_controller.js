@@ -38,7 +38,12 @@ module.exports = function(app) {
   // Update an existing burger entry
   app.put("/burgers/:id", function(req, res) {
     log.debug("___ENTER PUT /burgers:id___");
+
     log.debug("id = " + req.params.id);
+    log.debug("customer = " + JSON.stringify(req.body.customerName));
+
+    var burgerID = req.params.id;
+    var customerName = req.body.customerName;
 
     db.Burger.update(
       {devoured: true},
