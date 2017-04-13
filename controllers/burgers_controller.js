@@ -45,19 +45,74 @@ module.exports = function(app) {
     var burgerID = req.params.id;
     var customerName = req.body.customerName;
 
-    db.Burger.update(
-      {devoured: true},
-      {
-        where: {
-          id: req.params.id
-        }
+    db.Customer.findAll({
+      where: {
+        name: customerName
       }
-    ).then(function(burger) {
-      res.redirect('/');
     })
-    .catch(function (err) {
-      log.error("ERR = " + err);
-      res.json({status: "ERROR", message: err});
+    .then(function(customer) {
+      // Check if customer exists
+      if (customer.length === 0) {
+        log.debug("customer does not exist!");
+
+        // Create new customer
+        db.Customer.create({
+          name: customerName
+        })
+        .then(function(newCustomer) {
+          log.debug("customer created = " + JSON.stringify(newCustomer));
+
+          // Add customer reference to burger
+          db.Burger.update(
+            {
+              devoured: true,
+              CustomerId: newCustomer.id
+            },
+            {
+              where: {
+                id: req.params.id
+              }
+            }
+          ).then(function(burger) {
+            res.redirect('/');
+          })
+          .catch(function (err) {
+            log.error("ERR = " + err);
+            res.json({status: "ERROR", message: err});
+          });
+        })
+        .catch(function(error) {
+          log.debug("ERROR: Error on customer create -- " + JSON.stringify(error));
+          res.json({status: "ERROR", message: error});
+        })
+      } else { // customer exists
+        log.debug("customer exists = " + JSON.stringify(customer));
+
+        // Add customer reference to burger
+        db.Burger.update(
+          {
+            devoured: true,
+            CustomerId: customer[0].id
+          },
+          {
+            where: {
+              id: req.params.id
+            }
+          }
+        ).then(function(burger) {
+          res.redirect('/');
+        })
+        .catch(function (err) {
+          log.error("ERR = " + err);
+          res.json({status: "ERROR", message: err});
+        });
+      } // end customer exists
+    })
+    .catch(function(error) {
+      if(error) {
+        log.debug("ERROR: Error on customer query -- " + JSON.stringify(error));
+        res.json({status: "ERROR", message: error});
+      }
     });
   });
 };
